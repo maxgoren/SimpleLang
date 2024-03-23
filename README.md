@@ -21,3 +21,6 @@ and the 'loop' keyword which works just like a while loop in C.
         print next;
         i := i + 1;
     }
+    if (next < 300) {
+        print 1337;
+    }
