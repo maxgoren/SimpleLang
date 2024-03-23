@@ -17,7 +17,9 @@ bool Parser::match(TOKENS token) {
         nexttoken();
         return true;
     }
-    cout<<"mismatched token on line "<<current.lineNumber<<": "<<current.stringVal<<endl;
+    if (current.tokenVal != EOFTOKEN) {
+        cout<<"mismatched token on line "<<current.lineNumber<<": "<<current.stringVal<<endl;
+    }
     return false;
 }
 
@@ -34,13 +36,13 @@ ASTNode* Parser::parse(vector<Lexeme>& tokens) {
 
 ASTNode* Parser::program() {
     ASTNode* node = statement();
-    ASTNode* m = nullptr;
+    ASTNode* m = node;
     while (lookahead() != EOFTOKEN) {
         ASTNode* t = statement();
         if (lookahead() == RCURLY)
             match(RCURLY);
         if (m == nullptr) {
-            m = t;
+            node = m = t;
             node->next = m;
         } else {
             m->next = t;
@@ -94,10 +96,12 @@ ASTNode* Parser::statement() {
             match(SEMI);
         }
         return node;
+    } else if (lookahead() == LPAREN) {
+        node = simpleExpr();
+        match(SEMI);
     } else {
         cout<<"Unknown Token: "<<current.stringVal<<endl;
     }
-
     return node;
 }
 

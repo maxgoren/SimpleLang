@@ -85,7 +85,8 @@ void Interpreter::run(ASTNode* node) {
             statement(node);
             break;
         case EXPRNODE:
-            expression(node);
+            string res = expression(node);
+            cout<<res<<endl;
             break;
     }
     run(node->next);

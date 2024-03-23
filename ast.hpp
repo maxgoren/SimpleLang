@@ -18,4 +18,14 @@ ASTNode* makeExprNode(ExprK type, TOKENS token, string str);
 
 ASTNode* makeStmtNode(StmtK type, TOKENS token, string str);
 
+class ASTTracer {
+    private:
+        int depth;
+        void printNode(ASTNode* node);
+    public:
+        ASTTracer();
+        void traverse(ASTNode* node);
+
+};
+
 #endif

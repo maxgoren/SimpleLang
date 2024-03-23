@@ -31,9 +31,11 @@ class Lexer {
         Lexeme extractWord();
         Lexeme extractNumber();
         Lexeme checkSpecials();
+        vector<Lexeme>& start();
     public:
         Lexer();
         vector<Lexeme>& lex(string filename);
+        vector<Lexeme>& lexString(string str);
 };
 
 

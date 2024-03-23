@@ -56,8 +56,19 @@ Lexer::Lexer() {
 
 }
 
+vector<Lexeme>& Lexer::lexString(string str) {
+    vector<string> line;
+    line.push_back(str);
+    sb.load(line);
+    return start();
+}
+
 vector<Lexeme>& Lexer::lex(string filename) {
     sb.loadFile(filename);
+    return start();
+}
+
+vector<Lexeme>& Lexer::start() {
     Lexeme next;
     while (sb.getChar() != sb.EOFMark()) {
         if (isalpha(sb.getChar())) {
