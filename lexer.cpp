@@ -17,7 +17,7 @@ Lexeme Lexer::extractWord() {
 }
 Lexeme Lexer::extractNumber() {
     string word;
-    while (sb.getChar() != sb.EOFMark() && isdigit(sb.getChar())) {
+    while (sb.getChar() != sb.EOFMark() && (isdigit(sb.getChar()) || sb.getChar() == '.')) {
         word.push_back(sb.getChar());
         sb.nextChar();
     }
