@@ -10,9 +10,6 @@ void interpretFile(string filename) {
     Parser parser;
     Interpreter interpreter;
     auto tokens = lexer.lex(filename);
-    for (auto m : tokens) {
-        cout<<m.lineNumber<<": "<<m.stringVal<<endl;
-    }
     auto ast = parser.parse(tokens);
     ASTTracer tracer;
     tracer.traverse(ast);

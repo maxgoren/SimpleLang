@@ -8,7 +8,7 @@ smolz:
 	g++ --std=c++17 -g -c terp.cpp
 	g++ *.o -o smolz
 install:
-	mv smolz /usr/local/bin
+	cp smolz /usr/local/bin
 
 clean:
 	rm *.o;

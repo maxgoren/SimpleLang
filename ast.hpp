@@ -2,8 +2,8 @@
 #define ast_hpp
 #include "lexer.hpp"
 enum NodeK {EXPRNODE, STMTNODE};
-enum ExprK {ID_EXPR, OP_EXPR, CONST_EXPR};
-enum StmtK {PRINT_STMT, IF_STMT, LOOP_STMT, ASSIGN_STMT};
+enum ExprK {ID_EXPR, OP_EXPR, CONST_EXPR, FUNC_EXPR};
+enum StmtK {PRINT_STMT, IF_STMT, LOOP_STMT, ASSIGN_STMT, DEF_STMT, RETURN_STMT};
 
 struct ASTNode {
     NodeK kind;

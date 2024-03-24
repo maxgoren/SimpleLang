@@ -23,6 +23,7 @@ class SymbolTable {
         ~SymbolTable();
         void insert(string key, string value);
         string lookup(string key);
+        SymbolTable& operator=(const SymbolTable& st);
 };
 
 #endif

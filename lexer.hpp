@@ -7,10 +7,18 @@ using namespace std;
 
 enum TOKENS {
     ERROR, WHITESPACE, EOFTOKEN,
-    NUMBER, ID,
+    DEF, NUMBER, ID,
     PLUS, MINUS, MULTIPLY, DIVIDE,
     ASSIGN, LPAREN, RPAREN, LCURLY, RCURLY,
-    LESS, EQUAL, IF, PRINT, LOOP, SEMI, COLON, PERIOD
+    LESS, EQUAL, IF, PRINT, LOOP, RETURN, SEMI, COLON, PERIOD, COMA
+};
+
+inline string tokenString[] = {
+    "ERROR", "WHITESPACE", "EOFTOKEN",
+    "DEF", "NUMBER", "ID",
+    "PLUS", "MINUS", "MULTIPLY", "DIVIDE",
+    "ASSIGN", "LPAREN", "RPAREN", "LCURLY", "RCURLY",
+    "LESS", "EQUAL", "IF", "PRINT", "LOOP", "RETURN", "SEMI", "COLON", "PERIOD", "COMA"
 };
 
 struct Lexeme {

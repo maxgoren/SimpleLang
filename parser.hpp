@@ -20,6 +20,8 @@ class Parser {
         ASTNode* parse(vector<Lexeme>& tokens);
         ASTNode* program();
         ASTNode* statement();
+        ASTNode* paramList();
+        ASTNode* argsList();
         ASTNode* simpleExpr();
         ASTNode* expression();
         ASTNode* term();

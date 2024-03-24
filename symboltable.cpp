@@ -45,3 +45,12 @@ string SymbolTable::lookup(string key) {
     }
     return "-1.0";
 }
+
+SymbolTable& SymbolTable::operator=(const SymbolTable& st) {
+    if (this->head != st.head) {
+        head = nullptr;
+        for (link it = st.head; it != nullptr; it = it->next)
+            insert(it->key, it->value);
+    }
+    return *this;
+}

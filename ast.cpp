@@ -6,6 +6,9 @@ ASTNode* makeExprNode(ExprK type, TOKENS token, string str) {
     node->type.expr = type;
     node->data.stringVal = str;
     node->data.tokenVal = token;
+    node->left = nullptr;
+    node->right = nullptr;
+    node->next = nullptr;
     return node;
 }
 
@@ -15,6 +18,9 @@ ASTNode* makeStmtNode(StmtK type, TOKENS token, string str) {
     node->type.stmt = type;
     node->data.stringVal = str;
     node->data.tokenVal = token;
+    node->left = nullptr;
+    node->right = nullptr;
+    node->next = nullptr;
     return node;
 }
 
@@ -22,14 +28,15 @@ ASTTracer::ASTTracer() {
     depth = 0;
 }
 
-void ASTTracer::traverse(ASTNode* node) {
+void ASTTracer::traverse(ASTNode* x) {
     depth++;
-    if (node != nullptr) {
-        printNode(node);
-        traverse(node->left);
-        traverse(node->right);
-        if (node->next != nullptr)
-            traverse(node->next);
+    for (auto node = x; node != nullptr; node = node->next) {
+        if (node != nullptr)
+            printNode(node);
+        if (node->left != nullptr)
+            traverse(node->left);
+        if (node->right != nullptr)
+            traverse(node->right);
     }
     depth--;
 }
@@ -43,6 +50,7 @@ void ASTTracer::printNode(ASTNode* node) {
             case ID_EXPR:    cout<<"[ID_EXPR]"<<endl; break;
             case CONST_EXPR: cout<<"[CONST_EXPR]"<<endl; break;
             case OP_EXPR:    cout<<"[OP_EXPR]"<<endl; break;
+            case FUNC_EXPR:  cout<<"[FUNC_EXPR]"<<endl; break;
             default:
                 break;
         }
@@ -52,6 +60,8 @@ void ASTTracer::printNode(ASTNode* node) {
             case LOOP_STMT:   cout<<"[LOOP_STMT]"<<endl; break;
             case PRINT_STMT:  cout<<"[PRINT_STMT]"<<endl; break;
             case ASSIGN_STMT: cout<<"[ASSIGN_STMT]"<<endl; break;
+            case DEF_STMT:    cout<<"[DEF_STMT]"<<endl; break;
+            case RETURN_STMT: cout<<"[RETURN_STMT]"<<endl; break;
             default:
                 break;
         }
